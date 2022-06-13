@@ -95,10 +95,17 @@ void BasedWindow::OnPress(wxCommandEvent& event) {
 }
 
 void BasedWindow::OnGetResult(wxCommandEvent& event) {
-    wxString disp = wxString::Format(
-        "Your based score is: %d / %d",
-        m_scores, GetSum()    
-    );
+    wxString disp;
+    if(m_scores > 0) {
+        disp= wxString::Format(
+            "Your based score is: %d / %d",
+            m_scores, GetSum()    
+        );
+    } else if(m_scores < 0) {
+        disp = wxString::Format("You are very cringe. Based score of: %d", m_scores);
+    } else {
+        disp = "True neutral";
+    }
     wxMessageBox(disp, "Results");
 }
 
